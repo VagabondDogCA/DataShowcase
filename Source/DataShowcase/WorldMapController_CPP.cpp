@@ -10,6 +10,11 @@ AWorldMapController_CPP::AWorldMapController_CPP()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+void AWorldMapController_CPP::BeginPlay()
+{
+
+}
+
 void AWorldMapController_CPP::Tick(float DeltaTime)
 {
 	/*
