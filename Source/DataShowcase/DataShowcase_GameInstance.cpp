@@ -19,15 +19,7 @@ AMockFolk* UDataShowcase_GameInstance::CreateChar()
 	return nullptr;
 }
 
-void UDataShowcase_GameInstance::SaveChar()
-{
-	return;
-}
 
-AMockFolk* UDataShowcase_GameInstance::LoadChar()
-{
-	return nullptr;
-}
 
 void UDataShowcase_GameInstance::RandomizeChar(AMockFolk* CharToGo)
 {

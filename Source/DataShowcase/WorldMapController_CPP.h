@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "RoadSign_CPP.h"
 #include "WorldMapController_CPP.generated.h"
 
 /**
@@ -17,14 +18,17 @@ class DATASHOWCASE_API AWorldMapController_CPP : public APlayerController
 
 		AWorldMapController_CPP();
 	
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+		
 
 public:
-	// Called every frame
+	
+	ARoadSign_CPP * TargetRoad;
+
+
+	UFUNCTION(BlueprintCallable)
+		virtual void Possess(APawn* aPawn) override;
+
+	virtual void BeginPlay() override;
+
 	virtual void Tick(float DeltaTime) override;
-
-
 };

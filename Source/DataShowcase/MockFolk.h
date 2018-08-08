@@ -2,10 +2,11 @@
 
 #pragma once
 
-#include "DataShowcase_GameInstance.h"
 #include "CoreMinimal.h"
 #include "Structures.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 #include "MockFolk.generated.h"
 
 
@@ -24,6 +25,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FPawnStatus CharacterStatus;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		USpringArmComponent* SpringArm;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UCameraComponent* ControllerCamera;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -34,6 +41,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 };
 
 

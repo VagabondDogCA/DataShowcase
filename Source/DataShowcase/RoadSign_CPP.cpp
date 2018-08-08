@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "RoadSign_CPP.h"
-
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 ARoadSign_CPP::ARoadSign_CPP()
@@ -12,22 +12,15 @@ ARoadSign_CPP::ARoadSign_CPP()
 	USceneComponent* sceneComp = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
 	RootComponent = sceneComp;
 
+	UCapsuleComponent* CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CapsuleComponent"));
+	CapsuleComp->SetupAttachment(RootComponent);
+
+
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	MeshComponent->SetupAttachment(RootComponent);
+	//MeshComponent->SetRelativeRotation(FRotator(0, 90.f, 0));
 
 }
 
-// Called when the game starts or when spawned
-void ARoadSign_CPP::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
 
-// Called every frame
-void ARoadSign_CPP::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
 
