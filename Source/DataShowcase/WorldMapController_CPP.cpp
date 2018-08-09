@@ -3,6 +3,7 @@
 #include "WorldMapController_CPP.h"
 #include "Engine/Engine.h"
 #include "RoadSign_CPP.h"
+#include "MockFolk.h"
 #include "AI/Navigation/NavigationSystem.h"
 
 
@@ -37,22 +38,25 @@ void AWorldMapController_CPP::MoveToRoadSign()
 		
 		ARoadSign_CPP* hitRoad = Cast<ARoadSign_CPP>(TraceHitResult.Actor);
 		if (hitRoad) {
-			SimpleMoveToRoadSign(hitRoad->GetActorLocation());
-			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TraceHitResult.GetActor()->GetName());
+
+			SimpleMoveToRoadSign(hitRoad);
+			//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TraceHitResult.GetActor()->GetName());
 		}
 	}
 }
 
-void AWorldMapController_CPP::SimpleMoveToRoadSign(FVector destination)
+void AWorldMapController_CPP::SimpleMoveToRoadSign(ARoadSign_CPP* MoveToRoadSign)
 {
-	APawn* const MyPawn = GetPawn();
-	if (MyPawn)
+	
+	AMockFolk* myFolk = Cast<AMockFolk>(GetPawn());
+	FVector destination = MoveToRoadSign->GetActorLocation();
+	if (myFolk)
 	{
 		UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
-		float const Distance = FVector::Dist(destination, MyPawn->GetActorLocation());
+		float const Distance = FVector::Dist(destination, myFolk->GetActorLocation());
 
 		// We need to issue move command only if far enough in order for walk animation to play correctly
-		if (NavSys && (Distance > 120.0f))
+		if (NavSys && (Distance > 120.0f) && myFolk->ChangeRoadSign(MoveToRoadSign))
 		{
 			NavSys->SimpleMoveToLocation(this, destination);
 		}

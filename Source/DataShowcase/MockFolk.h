@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "RoadSign_CPP.h"
 #include "MockFolk.generated.h"
 
 
@@ -18,18 +19,21 @@ class DATASHOWCASE_API AMockFolk : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AMockFolk();
-
-
-	//all player status go there
-public:
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FPawnStatus CharacterStatus;
 
+	//all player status go there
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		ARoadSign_CPP* CurrentAtRoadSign;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USpringArmComponent* SpringArm;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCameraComponent* ControllerCamera;
-
 
 protected:
 	// Called when the game starts or when spawned
@@ -42,6 +46,5 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	bool ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign);
 };
-
-

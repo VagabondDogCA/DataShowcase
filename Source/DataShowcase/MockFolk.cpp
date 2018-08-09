@@ -45,4 +45,16 @@ void AMockFolk::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+bool AMockFolk::ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign)
+{
+	if (CurrentAtRoadSign == nullptr) {
+		CurrentAtRoadSign = MoveToRoadSign;
+		return 0;
+	}
+	if (CurrentAtRoadSign->CanExplore(MoveToRoadSign)){
+		CurrentAtRoadSign = MoveToRoadSign;
+		return 1;
+	}
+	return 0;
+}
 

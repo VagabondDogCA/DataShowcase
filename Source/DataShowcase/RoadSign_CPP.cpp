@@ -43,11 +43,13 @@ void ARoadSign_CPP::BeginPlay()
 	}
 }
 
-void ARoadSign_CPP::TryExplore(ARoadSign_CPP* TryWayOut)
+bool ARoadSign_CPP::CanExplore(ARoadSign_CPP* TryWayOut)
 {
 	if (WayOut.Contains(TryWayOut)) {
 		TryWayOut->TurnColor();
+		return 1;
 	}
+	return 0;
 }
 
 void ARoadSign_CPP::TurnColor()

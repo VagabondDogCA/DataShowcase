@@ -28,7 +28,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void MoveToRoadSign();
 
-	void SimpleMoveToRoadSign(FVector destination);
+	void SimpleMoveToRoadSign(ARoadSign_CPP* MoveToRoadSign);
 
 	virtual void BeginPlay() override;
 
