@@ -19,5 +19,20 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* MeshComponent;
 
+	UMaterialInterface *Material_Deadly, *Material_Peaceful;
 
+	bool isExplored;
+
+	virtual void BeginPlay() override;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		ARoadSign_CPP* WayInRoadSign;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<ARoadSign_CPP*> WayOut;
+	UFUNCTION(BlueprintCallable)
+		void TryExplore(ARoadSign_CPP* TryWayOut);
+
+	void TurnColor();
 };
+
+

@@ -17,16 +17,18 @@ class DATASHOWCASE_API AWorldMapController_CPP : public APlayerController
 
 
 		AWorldMapController_CPP();
-	
-		
 
 public:
 	
 	ARoadSign_CPP * TargetRoad;
 
-
 	UFUNCTION(BlueprintCallable)
 		virtual void Possess(APawn* aPawn) override;
+
+	UFUNCTION(BlueprintCallable)
+		void MoveToRoadSign();
+
+	void SimpleMoveToRoadSign(FVector destination);
 
 	virtual void BeginPlay() override;
 

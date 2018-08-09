@@ -2,7 +2,8 @@
 
 #include "RoadSign_CPP.h"
 #include "Components/CapsuleComponent.h"
-
+#include "UObject/ConstructorHelpers.h"
+#include "Materials/MaterialInstanceDynamic.h"
 // Sets default values
 ARoadSign_CPP::ARoadSign_CPP()
 {
@@ -19,8 +20,39 @@ ARoadSign_CPP::ARoadSign_CPP()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	MeshComponent->SetupAttachment(RootComponent);
 	//MeshComponent->SetRelativeRotation(FRotator(0, 90.f, 0));
-
+	
+	ConstructorHelpers::FObjectFinder<UMaterial> MPeaceful(TEXT("/Game/Materials/PeacefulBlue"));
+	Material_Peaceful = MPeaceful.Object;
+	ConstructorHelpers::FObjectFinder<UMaterial> MDeadly(TEXT("Material'/Game/Materials/DeadlyRed.DeadlyRed'"));
+	Material_Deadly = MDeadly.Object;
 }
 
+void ARoadSign_CPP::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	
+	/*Material_Deadly = UMaterialInstanceDynamic::Create(DeadlyMaterial.Object, DeadlyMaterial.Object);
+	Material_Peaceful = UMaterialInstanceDynamic::Create(PeacefulMaterial.Object, PeacefulMaterial.Object);
+	*/
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, Material_Peaceful->GetPathName());
+	if (isExplored) {
+			MeshComponent->SetMaterial(0, Material_Peaceful);
+	} else {
+			MeshComponent->SetMaterial(0, Material_Deadly);
+	}
+}
 
+void ARoadSign_CPP::TryExplore(ARoadSign_CPP* TryWayOut)
+{
+	if (WayOut.Contains(TryWayOut)) {
+		TryWayOut->TurnColor();
+	}
+}
+
+void ARoadSign_CPP::TurnColor()
+{
+	isExplored = 1;
+	MeshComponent->SetMaterial(0, Material_Peaceful);
+}
 

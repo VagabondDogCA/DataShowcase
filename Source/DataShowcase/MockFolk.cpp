@@ -17,7 +17,7 @@ AMockFolk::AMockFolk()
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(RootComponent);
-	SpringArm->TargetArmLength = 1500.f;
+	SpringArm->TargetArmLength = 3500.f;
 	SpringArm->bAbsoluteRotation = 1; // Don't want arm to rotate when character does
 	SpringArm->RelativeRotation = FRotator(-60.f, 0.f, 0.f);
 	SpringArm->bDoCollisionTest = false; // Don't want to pull camera in when it collides with level
@@ -27,27 +27,22 @@ AMockFolk::AMockFolk()
 }
 
 
-
 // Called when the game starts or when spawned
 void AMockFolk::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
 void AMockFolk::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-
 }
 
 // Called to bind functionality to input
 void AMockFolk::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 
