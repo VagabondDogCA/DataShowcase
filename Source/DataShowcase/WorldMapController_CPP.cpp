@@ -6,13 +6,9 @@
 #include "MockFolk.h"
 #include "AI/Navigation/NavigationSystem.h"
 
-
-
-
 AWorldMapController_CPP::AWorldMapController_CPP()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 void AWorldMapController_CPP::BeginPlay()

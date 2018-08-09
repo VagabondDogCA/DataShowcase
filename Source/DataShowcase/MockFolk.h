@@ -8,6 +8,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "RoadSign_CPP.h"
+#include "QuestSysComponent_CPP.h"
 #include "MockFolk.generated.h"
 
 
@@ -35,6 +36,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCameraComponent* ControllerCamera;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UQuestSysComponent_CPP* QuestComponent;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -47,4 +51,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	bool ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign);
+
+	FString GetCurrentRoadSignName();
 };

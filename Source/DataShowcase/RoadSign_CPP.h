@@ -22,6 +22,7 @@ public:
 	UMaterialInterface *Material_Deadly, *Material_Peaceful;
 
 	bool isExplored;
+	FString RoadName;
 
 	virtual void BeginPlay() override;
 	
@@ -31,6 +32,8 @@ public:
 		bool CanExplore(ARoadSign_CPP* TryWayOut);
 
 	void TurnColor();
+
+	void MutualConntect(ARoadSign_CPP* ConnectedSign);
 };
 
 

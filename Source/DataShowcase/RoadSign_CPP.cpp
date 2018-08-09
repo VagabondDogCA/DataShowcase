@@ -58,3 +58,9 @@ void ARoadSign_CPP::TurnColor()
 	MeshComponent->SetMaterial(0, Material_Peaceful);
 }
 
+void ARoadSign_CPP::MutualConntect(ARoadSign_CPP* ConnectedSign)
+{
+	WayOut.Add(ConnectedSign);
+	ConnectedSign->WayOut.Add(this);
+}
+

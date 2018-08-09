@@ -5,6 +5,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
 
+
 // Sets default values
 AMockFolk::AMockFolk()
 {
@@ -24,6 +25,9 @@ AMockFolk::AMockFolk()
 
 	ControllerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ControllerCamera"));
 	ControllerCamera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+
+	QuestComponent = CreateDefaultSubobject<UQuestSysComponent_CPP>(TEXT("SysComponent"));
+	AddOwnedComponent(QuestComponent);
 }
 
 
@@ -56,5 +60,10 @@ bool AMockFolk::ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign)
 		return 1;
 	}
 	return 0;
+}
+
+FString AMockFolk::GetCurrentRoadSignName()
+{
+	return CurrentAtRoadSign->GetName();
 }
 
