@@ -52,5 +52,5 @@ public:
 
 	bool ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign);
 
-	FString GetCurrentRoadSignName();
+	AActor* GetCurrentRoadSignRef();
 };

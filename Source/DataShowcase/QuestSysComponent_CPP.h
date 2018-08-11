@@ -16,7 +16,7 @@ enum class EQuestType : uint8
 };
 
 USTRUCT(BlueprintType)
-struct FQuestNode
+struct FQuestNode : public FTableRowBase
 {
 	GENERATED_BODY()
 public:
@@ -29,11 +29,11 @@ public:
 
 	//NOT A TYPE OF UObject, since targets won't generate when task init
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite)
-		TArray<FString> QuestTargets;
+		TArray<AActor*> QuestTargets;
 	
 	//Not a type of UObject, since targets already dead when out of combat map
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite)
-		TArray<FString> QuestCompletedTargets;
+		TArray<AActor*> QuestCompletedTargets;
 	
 	//Always a RoadSign type
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite)

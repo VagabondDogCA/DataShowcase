@@ -18,9 +18,10 @@ AMockFolk::AMockFolk()
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(RootComponent);
-	SpringArm->TargetArmLength = 3500.f;
+
 	SpringArm->bAbsoluteRotation = 1; // Don't want arm to rotate when character does
 	SpringArm->RelativeRotation = FRotator(-60.f, 0.f, 0.f);
+
 	SpringArm->bDoCollisionTest = false; // Don't want to pull camera in when it collides with level
 
 	ControllerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ControllerCamera"));
@@ -35,6 +36,8 @@ AMockFolk::AMockFolk()
 void AMockFolk::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SpringArm->TargetArmLength = 5000.f;
 }
 
 // Called every frame
@@ -62,8 +65,8 @@ bool AMockFolk::ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign)
 	return 0;
 }
 
-FString AMockFolk::GetCurrentRoadSignName()
+AActor* AMockFolk::GetCurrentRoadSignRef()
 {
-	return CurrentAtRoadSign->GetName();
+	return CurrentAtRoadSign;
 }
 

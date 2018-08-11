@@ -46,23 +46,33 @@ void UQuestSysComponent_CPP::GenerateRandomQuest()
 	static TArray<AActor*> RoadSigns;
 
 	UGameplayStatics::GetAllActorsOfClass(this, ARoadSign_CPP::StaticClass(), RoadSigns);
+	
+	/*
+	* DEBUG	message
+	for (AActor* _roadsign : RoadSigns) {
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, *_roadsign->GetName());
+	}
+	*/
 	static const int RoadSignNum = RoadSigns.Num();
 
 	FQuestNode newQuestNode;
+	//quest name
 	newQuestNode.QuestName = "Some What Regular Newbie Letter Carrier Quest";
+	//quest type
 	newQuestNode.QuestNodeType = EQuestType::VE_Carrier;
 	
-	
 	TArray<uint8> ExceptionPoints;
+	//random map node num
 	ExceptionPoints.AddUnique(FMath::RandRange(0, RoadSignNum));
+	//start map node
 	newQuestNode.QuestStartPosition = RoadSigns[ExceptionPoints[0]];
 	uint8 newPoint;
 	do {
 		newPoint = FMath::RandRange(0, RoadSignNum);
-	} while (ExceptionPoints[0] != newPoint);
-
-	newQuestNode.QuestTargets.Add(RoadSigns[newPoint]->GetName());
-	
+		
+	} while (ExceptionPoints[0] == newPoint);
+	ExceptionPoints.Add(newPoint);
+	newQuestNode.QuestTargets.Add(RoadSigns[newPoint]);
 	currentQuests.Add(newQuestNode);
 }
 
@@ -73,16 +83,14 @@ void UQuestSysComponent_CPP::CheckPoint()
 		return;
 	for (FQuestNode& questNode : currentQuests)
 	{
-		FString currentPoint;
+		AActor* currentPoint;
 		if (questNode.QuestTargets.Num() == 0) {
 			questNode.bIsQuestCompleted = 1;
 
-			//TODO pop this quest node from collection
-
 		} else {
 			currentPoint = questNode.QuestTargets.Last();
-			if (parentInstance->GetCurrentRoadSignName() == currentPoint) {
-				FString DequedString = questNode.QuestTargets.Pop();
+			if (parentInstance->GetCurrentRoadSignRef() == currentPoint) {
+				AActor* DequedString = questNode.QuestTargets.Pop();
 				questNode.QuestCompletedTargets.Add(DequedString);
 			}
 		}
