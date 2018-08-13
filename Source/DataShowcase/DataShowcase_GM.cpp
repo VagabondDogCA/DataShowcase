@@ -10,7 +10,7 @@
 
 ADataShowcase_GM::ADataShowcase_GM()
 {
-	ConstructorHelpers::FClassFinder<APawn> _DefaultPawn(TEXT("/Game/Pawns/MockFolk_BP"));
+	ConstructorHelpers::FClassFinder<APawn> _DefaultPawn(TEXT("/Game/Pawns/PlayerCharacter_BP"));
 	if(_DefaultPawn.Succeeded())
 		DefaultPawnClass = _DefaultPawn.Class;
 

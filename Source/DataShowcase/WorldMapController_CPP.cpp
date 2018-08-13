@@ -3,7 +3,7 @@
 #include "WorldMapController_CPP.h"
 #include "Engine/Engine.h"
 #include "RoadSign_CPP.h"
-#include "MockFolk.h"
+#include "PlayerCharacter.h"
 #include "AI/Navigation/NavigationSystem.h"
 
 AWorldMapController_CPP::AWorldMapController_CPP()
@@ -44,7 +44,7 @@ void AWorldMapController_CPP::MoveToRoadSign()
 void AWorldMapController_CPP::SimpleMoveToRoadSign(ARoadSign_CPP* MoveToRoadSign)
 {
 	
-	AMockFolk* myFolk = Cast<AMockFolk>(GetPawn());
+	APlayerCharacter* myFolk = Cast<APlayerCharacter>(GetPawn());
 	FVector destination = MoveToRoadSign->GetActorLocation();
 	if (myFolk)
 	{

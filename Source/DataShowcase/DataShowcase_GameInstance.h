@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "MockFolk.h"
+#include "PlayerCharacter.h"
 #include "DataShowcase_GameInstance.generated.h"
 
 
@@ -15,8 +15,8 @@ class DATASHOWCASE_API UDataShowcase_GameInstance : public UGameInstance
 
 public:
 		UFUNCTION(BlueprintCallable)
-			AMockFolk* CreateChar();
+			APlayerCharacter* CreateChar();
 
 		UFUNCTION(BlueprintCallable)
-			void RandomizeChar(AMockFolk* CharToGo);
+			void RandomizeChar(APlayerCharacter* CharToGo);
 };

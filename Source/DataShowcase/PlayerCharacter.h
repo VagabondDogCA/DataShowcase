@@ -9,17 +9,17 @@
 #include "Camera/CameraComponent.h"
 #include "RoadSign_CPP.h"
 #include "QuestSysComponent_CPP.h"
-#include "MockFolk.generated.h"
+#include "PlayerCharacter.generated.h"
 
 
 UCLASS()
-class DATASHOWCASE_API AMockFolk : public ACharacter
+class DATASHOWCASE_API APlayerCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	AMockFolk();
+	APlayerCharacter();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FPawnStatus CharacterStatus;

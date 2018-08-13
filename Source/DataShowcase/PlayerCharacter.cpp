@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "MockFolk.h"
+#include "PlayerCharacter.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
 
 
 // Sets default values
-AMockFolk::AMockFolk()
+APlayerCharacter::APlayerCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -33,7 +33,7 @@ AMockFolk::AMockFolk()
 
 
 // Called when the game starts or when spawned
-void AMockFolk::BeginPlay()
+void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -41,18 +41,18 @@ void AMockFolk::BeginPlay()
 }
 
 // Called every frame
-void AMockFolk::Tick(float DeltaTime)
+void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
 // Called to bind functionality to input
-void AMockFolk::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
-bool AMockFolk::ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign)
+bool APlayerCharacter::ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign)
 {
 	if (CurrentAtRoadSign == nullptr) {
 		CurrentAtRoadSign = MoveToRoadSign;
@@ -65,7 +65,7 @@ bool AMockFolk::ChangeRoadSign(ARoadSign_CPP* MoveToRoadSign)
 	return 0;
 }
 
-AActor* AMockFolk::GetCurrentRoadSignRef()
+AActor* APlayerCharacter::GetCurrentRoadSignRef()
 {
 	return CurrentAtRoadSign;
 }

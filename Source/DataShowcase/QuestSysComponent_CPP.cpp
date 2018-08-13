@@ -3,7 +3,7 @@
 #include "QuestSysComponent_CPP.h"
 #include "Kismet/GameplayStatics.h"
 #include "RoadSign_CPP.h"
-#include "MockFolk.h"
+#include "PlayerCharacter.h"
 
 
 // Sets default values for this component's properties
@@ -59,7 +59,7 @@ void UQuestSysComponent_CPP::GenerateRandomQuest()
 	//quest name
 	newQuestNode.QuestName = "Some What Regular Newbie Letter Carrier Quest";
 	//quest type
-	newQuestNode.QuestNodeType = EQuestType::VE_Carrier;
+	newQuestNode.QuestNodeType = EQuestCategory::VE_Generice;
 	
 	TArray<uint8> ExceptionPoints;
 	//random map node num
@@ -78,7 +78,7 @@ void UQuestSysComponent_CPP::GenerateRandomQuest()
 
 void UQuestSysComponent_CPP::CheckPoint()
 {
-	AMockFolk *parentInstance = Cast<AMockFolk>(GetOwner());
+	APlayerCharacter *parentInstance = Cast<APlayerCharacter>(GetOwner());
 	if (!parentInstance)
 		return;
 	for (FQuestNode& questNode : currentQuests)

@@ -6,12 +6,12 @@
 
 
 
-AMockFolk* UDataShowcase_GameInstance::CreateChar()
+APlayerCharacter* UDataShowcase_GameInstance::CreateChar()
 {
 	
-	AMockFolk* newPlayer;
-	//newPlayer = CreateDefaultSubobject<AMockFolk>(TEXT("Player"));
-	newPlayer = GetWorld()->SpawnActor<AMockFolk>(AMockFolk::StaticClass());
+	APlayerCharacter* newPlayer;
+	//newPlayer = CreateDefaultSubobject<APlayerCharacter>(TEXT("Player"));
+	newPlayer = GetWorld()->SpawnActor<APlayerCharacter>(APlayerCharacter::StaticClass());
 	RandomizeChar(newPlayer);
 	return newPlayer;
 	
@@ -21,7 +21,7 @@ AMockFolk* UDataShowcase_GameInstance::CreateChar()
 
 
 
-void UDataShowcase_GameInstance::RandomizeChar(AMockFolk* CharToGo)
+void UDataShowcase_GameInstance::RandomizeChar(APlayerCharacter* CharToGo)
 {
 	FPawnStatus& tempStatus = CharToGo->CharacterStatus;
 
